@@ -1,0 +1,20 @@
+language: php
+
+php:
+  - 5.6
+  - 7.0
+
+before_script:
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install --dev --prefer-source
+
+script:
+  - mkdir -p build/logs
+  - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml tests
+
+after_script:
+  - php vendor/bin/coveralls -v
+notifications:
+  email: false
+  slack:
+    secure: lf2Vue5ugGVzj4eW15ry/KPtDZAjjOC5tAPbRRKXTP53bFXsvNKmd+5aaYJteYq/KYqlKIBcA+D+9Udpcluc94YP2S6AqQzSktn+/srl2hnui6LvdT+Fevixx+6keSgsMzEhrJo0702eC/XfVxK+VB0p3gplEAw9iFzGwqKvMBslcV9waGvCaIp6NlxH21gWnTTq7VpoS3qnBOR2NvqEQyZbxXJZqN5W0dUld2rWMPnsQRJ/axvpJGF99icBPXGXNX+3fP5oQPQUDJsGYsCfWFPQJsCKdfoxdEz7mIx3lF6c2Zpe9y8tbvrOxyuHHBkPuKVUTYiLYEks4LQTWy9LTqmCsJ7AIEgny9tcGp1Yv8ToBC21MRNAwk8IAUDVbvNBN1/yGz+utPgv5xvpqV6dtX5do4C8NLTnq70DYlsun4dTVzA+PdGe/TbLJAVMYP4e5OC3j4oHhGBBX/TtJ6Ow0m1qSRHbvyEOeAE0/IZgxfa2Eecz8R2dWKc9SGm/TjiBIdb+Z562Qrqp+oTNsrVpkl1jQLQj56kWDunO+DdjkF1DydEWJmnfc09o0lLrdHFhPXuyvF8bJF+gbPwZz4h1/pW38FiqSMvGRqKh5+o9uv06IFQ08z+V5IMA2huxZjHHYNQcEOoVCxKpLUZ5RAZ1iJJMl/5OY9Tg897nvREyUqM=
