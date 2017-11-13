@@ -2,7 +2,6 @@
 
 namespace Itigoppo\Backlog\Exception;
 
-
 use Throwable;
 
 class BacklogException extends \Exception

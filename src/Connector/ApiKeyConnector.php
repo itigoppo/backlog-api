@@ -2,7 +2,6 @@
 
 namespace Itigoppo\Backlog\Connector;
 
-
 use GuzzleHttp\Client;
 use Itigoppo\Backlog\Exception\BacklogException;
 
@@ -30,7 +29,6 @@ class ApiKeyConnector extends Connector
                 'query' => ['apiKey' => $this->api_key],
                 'form_params' => $form_params,
             ]);
-
         } catch (\Exception $exception) {
             throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
         }

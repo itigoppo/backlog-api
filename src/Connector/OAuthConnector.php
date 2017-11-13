@@ -2,7 +2,6 @@
 
 namespace Itigoppo\Backlog\Connector;
 
-
 class OAuthConnector extends Connector
 {
 
