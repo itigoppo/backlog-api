@@ -1,5 +1,5 @@
 # Backlog API Library for PHP
-[![Build Status](https://travis-ci.org/itigoppo/backlog.svg?branch=master)](https://travis-ci.org/itigoppo/backlog)
+[![Build Status](https://travis-ci.org/itigoppo/BacklogAPI.svg?branch=master)](https://travis-ci.org/itigoppo/BacklogAPI)
 
 BacklogAPIのPHPライブラリです。
 
