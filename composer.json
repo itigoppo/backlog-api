@@ -1,6 +1,6 @@
 {
-    "name": "itigoppo/backlog",
-    "description": "backlog api library",
+    "name": "itigoppo/backlog-api",
+    "description": "Backlog API Library for PHP",
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^6.3"
