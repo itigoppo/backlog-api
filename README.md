@@ -13,7 +13,7 @@ BacklogAPIのPHPライブラリです。
 # Installation
 
 ```bash
-composer install itigoppo/BacklogAPI
+composer require itigoppo/BacklogAPI
 ```
 
 # Usage
