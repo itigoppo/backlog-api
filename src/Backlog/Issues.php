@@ -184,8 +184,16 @@ class Issues
         $form_params = [
             ] + $form_options;
 
-        return $this->connector->patch(sprintf('issues/%s/comments/%d', $issues_id_or_key, $comment_id), $form_params,
-            [], $headers);
+        return $this->connector->patch(
+            sprintf(
+                'issues/%s/comments/%d',
+                $issues_id_or_key,
+                $comment_id
+            ),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
@@ -217,8 +225,16 @@ class Issues
         $form_params = [
             ] + $form_options;
 
-        return $this->connector->post(sprintf('issues/%s/comments/%s/notifications', $issues_id_or_key, $comment_id),
-            $form_params, [], $headers);
+        return $this->connector->post(
+            sprintf(
+                'issues/%s/comments/%s/notifications',
+                $issues_id_or_key,
+                $comment_id
+            ),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**

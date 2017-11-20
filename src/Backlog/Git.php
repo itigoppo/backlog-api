@@ -33,8 +33,13 @@ class Git
      */
     public function findRepositories($project_id_or_key, $repository_id_or_name)
     {
-        return $this->connector->get(sprintf('projects/%s/git/repositories/%s', $project_id_or_key,
-            $repository_id_or_name));
+        return $this->connector->get(
+            sprintf(
+                'projects/%s/git/repositories/%s',
+                $project_id_or_key,
+                $repository_id_or_name
+            )
+        );
     }
 
     /**
@@ -50,8 +55,15 @@ class Git
         $query_params = [
             ] + $query_options;
 
-        return $this->connector->get(sprintf('projects/%s/git/repositories/%s/pullRequests', $project_id_or_key,
-            $repository_id_or_name), [], $query_params);
+        return $this->connector->get(
+            sprintf(
+                'projects/%s/git/repositories/%s/pullRequests',
+                $project_id_or_key,
+                $repository_id_or_name
+            ),
+            [],
+            $query_params
+        );
     }
 
     /**
@@ -67,8 +79,15 @@ class Git
         $query_params = [
             ] + $query_options;
 
-        return $this->connector->get(sprintf('projects/%s/git/repositories/%s/pullRequests/count', $project_id_or_key,
-            $repository_id_or_name), [], $query_params);
+        return $this->connector->get(
+            sprintf(
+                'projects/%s/git/repositories/%s/pullRequests/count',
+                $project_id_or_key,
+                $repository_id_or_name
+            ),
+            [],
+            $query_params
+        );
     }
 
     /**
@@ -103,8 +122,16 @@ class Git
                 'branch' => $merge_branch,
             ] + $form_options;
 
-        return $this->connector->post(sprintf('projects/%s/git/repositories/%s/pullRequests', $project_id_or_key,
-            $repository_id_or_name), $form_params, [], $headers);
+        return $this->connector->post(
+            sprintf(
+                'projects/%s/git/repositories/%s/pullRequests',
+                $project_id_or_key,
+                $repository_id_or_name
+            ),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
@@ -117,8 +144,14 @@ class Git
      */
     public function findPullRequest($project_id_or_key, $repository_id_or_name, $pull_request_number)
     {
-        return $this->connector->get(sprintf('projects/%s/git/repositories/%s/pullRequests/%d', $project_id_or_key,
-            $repository_id_or_name, $pull_request_number));
+        return $this->connector->get(
+            sprintf(
+                'projects/%s/git/repositories/%s/pullRequests/%d',
+                $project_id_or_key,
+                $repository_id_or_name,
+                $pull_request_number
+            )
+        );
     }
 
     /**
@@ -139,8 +172,15 @@ class Git
         $form_params = [
             ] + $form_options;
 
-        return $this->connector->patch(sprintf('projects/%s/git/repositories/%s/pullRequests/%d', $project_id_or_key,
-            $repository_id_or_name, $pull_request_number), $form_params);
+        return $this->connector->patch(
+            sprintf(
+                'projects/%s/git/repositories/%s/pullRequests/%d',
+                $project_id_or_key,
+                $repository_id_or_name,
+                $pull_request_number
+            ),
+            $form_params
+        );
     }
 
     /**
@@ -161,9 +201,16 @@ class Git
         $query_params = [
             ] + $query_options;
 
-        return $this->connector->get(sprintf('projects/%s/git/repositories/%s/pullRequests/%d/comments',
-            $project_id_or_key,
-            $repository_id_or_name, $pull_request_number), [], $query_params);
+        return $this->connector->get(
+            sprintf(
+                'projects/%s/git/repositories/%s/pullRequests/%d/comments',
+                $project_id_or_key,
+                $repository_id_or_name,
+                $pull_request_number
+            ),
+            [],
+            $query_params
+        );
     }
 
     /**
@@ -191,9 +238,17 @@ class Git
                 'content' => $content,
             ] + $form_options;
 
-        return $this->connector->post(sprintf('projects/%s/git/repositories/%s/pullRequests/%d/comments',
-            $project_id_or_key,
-            $repository_id_or_name, $pull_request_number), $form_params, [], $headers);
+        return $this->connector->post(
+            sprintf(
+                'projects/%s/git/repositories/%s/pullRequests/%d/comments',
+                $project_id_or_key,
+                $repository_id_or_name,
+                $pull_request_number
+            ),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
@@ -206,9 +261,14 @@ class Git
      */
     public function numberOfPullRequestComments($project_id_or_key, $repository_id_or_name, $pull_request_number)
     {
-        return $this->connector->get(sprintf('projects/%s/git/repositories/%s/pullRequests/%d/comments/count',
-            $project_id_or_key,
-            $repository_id_or_name, $pull_request_number));
+        return $this->connector->get(
+            sprintf(
+                'projects/%s/git/repositories/%s/pullRequests/%d/comments/count',
+                $project_id_or_key,
+                $repository_id_or_name,
+                $pull_request_number
+            )
+        );
     }
 
     /**
@@ -235,9 +295,18 @@ class Git
         $form_params = [
             ] + $form_options;
 
-        return $this->connector->patch(sprintf('projects/%s/git/repositories/%s/pullRequests/%d/comments/%d',
-            $project_id_or_key,
-            $repository_id_or_name, $pull_request_number, $comment_id), $form_params, [], $headers);
+        return $this->connector->patch(
+            sprintf(
+                'projects/%s/git/repositories/%s/pullRequests/%d/comments/%d',
+                $project_id_or_key,
+                $repository_id_or_name,
+                $pull_request_number,
+                $comment_id
+            ),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
@@ -250,8 +319,13 @@ class Git
      */
     public function pullRequestAttachments($project_id_or_key, $repository_id_or_name, $pull_request_number)
     {
-        return $this->connector->get(sprintf('projects/%s/git/repositories/%s/pullRequests/%d/attachments',
-            $project_id_or_key,
-            $repository_id_or_name, $pull_request_number));
+        return $this->connector->get(
+            sprintf(
+                'projects/%s/git/repositories/%s/pullRequests/%d/attachments',
+                $project_id_or_key,
+                $repository_id_or_name,
+                $pull_request_number
+            )
+        );
     }
 }

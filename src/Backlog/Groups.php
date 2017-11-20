@@ -37,5 +37,4 @@ class Groups
     {
         return $this->connector->get(sprintf('groups/%d', $group_id));
     }
-
 }

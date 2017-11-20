@@ -106,8 +106,15 @@ class Projects
             'color' => $color,
         ];
 
-        return $this->connector->post(sprintf('projects/%s/issueTypes', $project_id_or_key), $form_params, [],
-            $headers);
+        return $this->connector->post(
+            sprintf(
+                'projects/%s/issueTypes',
+                $project_id_or_key
+            ),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
@@ -127,9 +134,16 @@ class Projects
         $form_params = [
             ] + $form_options;
 
-        return $this->connector->patch(sprintf('projects/%s/issueTypes/%d', $project_id_or_key, $issue_type_id),
+        return $this->connector->patch(
+            sprintf(
+                'projects/%s/issueTypes/%d',
+                $project_id_or_key,
+                $issue_type_id
+            ),
             $form_params,
-            [], $headers);
+            [],
+            $headers
+        );
     }
 
     /**
@@ -150,9 +164,16 @@ class Projects
             'substituteIssueTypeId' => $substitute_issue_type_id,
         ];
 
-        return $this->connector->delete(sprintf('projects/%s/issueTypes/%d', $project_id_or_key, $issue_type_id),
+        return $this->connector->delete(
+            sprintf(
+                'projects/%s/issueTypes/%d',
+                $project_id_or_key,
+                $issue_type_id
+            ),
             $form_params,
-            [], $headers);
+            [],
+            $headers
+        );
     }
 
     /**
@@ -184,8 +205,15 @@ class Projects
             'name' => $name,
         ];
 
-        return $this->connector->post(sprintf('projects/%s/categories', $project_id_or_key), $form_params, [],
-            $headers);
+        return $this->connector->post(
+            sprintf(
+                'projects/%s/categories',
+                $project_id_or_key
+            ),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
@@ -205,9 +233,16 @@ class Projects
         $form_params = [
             ] + $form_options;
 
-        return $this->connector->patch(sprintf('projects/%s/categories/%d', $project_id_or_key, $category_id),
+        return $this->connector->patch(
+            sprintf(
+                'projects/%s/categories/%d',
+                $project_id_or_key,
+                $category_id
+            ),
             $form_params,
-            [], $headers);
+            [],
+            $headers
+        );
     }
 
     /**
@@ -273,8 +308,16 @@ class Projects
                 'name' => $name,
             ] + $form_options;
 
-        return $this->connector->patch(sprintf('projects/%s/versions/%d', $project_id_or_key, $version_id),
-            $form_params, [], $headers);
+        return $this->connector->patch(
+            sprintf(
+                'projects/%s/versions/%d',
+                $project_id_or_key,
+                $version_id
+            ),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
