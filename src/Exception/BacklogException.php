@@ -1,6 +1,6 @@
 <?php
 
-namespace Itigoppo\Backlog\Exception;
+namespace Itigoppo\BacklogApi\Exception;
 
 use Throwable;
 

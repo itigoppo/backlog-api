@@ -1,6 +1,6 @@
 <?php
 
-namespace Itigoppo\Backlog\Connector;
+namespace Itigoppo\BacklogApi\Connector;
 
 abstract class Connector implements ConnectorInterface
 {
