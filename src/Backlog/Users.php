@@ -56,7 +56,7 @@ class Users
         $query_params = [
             ] + $query_options;
 
-        return $this->connector->get(sprintf('users/%s/activities', $user_id) [], $query_params);
+        return $this->connector->get(sprintf('users/%s/activities', $user_id), [], $query_params);
     }
 
     /**
