@@ -35,6 +35,31 @@ class Users
     }
 
     /**
+     * Add User
+     * 
+     * @param $user_id
+     * @param $password
+     * @param $name
+     * @param $mail_address
+     * @param int $role_type
+     * @return mixed|string
+     *
+     * @see https://developer.nulab-inc.com/docs/backlog/api/2/add-user/
+     */
+    public function create($user_id, $password, $name, $mail_address, $role_type = 2)
+    {
+        $form_params = [
+            'userId' => $user_id,
+            'password' => $password,
+            'name' => $name,
+            'mailAddress' => $mail_address,
+            'roleType' => $role_type
+        ];
+
+        return $this->connector->post('users', $form_params);
+    }
+
+    /**
      * 認証ユーザー情報の取得
      *
      * @return mixed|string
