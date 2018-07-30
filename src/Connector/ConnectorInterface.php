@@ -63,4 +63,6 @@ interface ConnectorInterface
      * @return mixed|string
      */
     public function delete($path, $form_params = [], $query_params = [], $headers = []);
+
+    public function postFile($path, $multipart, $query_params = [], $headers = []);
 }

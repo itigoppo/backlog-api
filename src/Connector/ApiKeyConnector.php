@@ -100,4 +100,19 @@ class ApiKeyConnector extends Connector
 
         return json_decode($response->getBody()->getContents());
     }
+
+    public function postFile($path, $multipart, $query_params = [], $headers = [])
+    {
+        try {
+            $response = $this->client->request('POST', $path, [
+                'headers' => $headers,
+                'query' => ['apiKey' => $this->api_key] + $query_params,
+                'multipart' => $multipart
+            ]);
+        } catch (\Exception $exception) {
+            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        }
+
+        return json_decode($response->getBody()->getContents());
+    }    
 }
