@@ -114,5 +114,5 @@ class ApiKeyConnector extends Connector
         }
 
         return json_decode($response->getBody()->getContents());
-    }    
+    }
 }
