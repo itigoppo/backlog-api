@@ -85,12 +85,12 @@ class Space
     /**
      * Post Attachment File
      *
-     * @param $multipart
+     * @param array $multipart
      * @return mixed|string
      * @see https://developer.nulab-inc.com/docs/backlog/api/2/post-attachment-file/
      */
     public function postAttachment($multipart)
     {
         return $this->connector->postFile('space/attachment', $multipart);
-    }    
+    }
 }

@@ -36,11 +36,11 @@ class Users
 
     /**
      * Add User
-     * 
-     * @param $user_id
-     * @param $password
-     * @param $name
-     * @param $mail_address
+     *
+     * @param string $user_id
+     * @param string $password
+     * @param string $name
+     * @param string $mail_address
      * @param int $role_type
      * @return mixed|string
      *

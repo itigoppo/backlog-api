@@ -64,5 +64,14 @@ interface ConnectorInterface
      */
     public function delete($path, $form_params = [], $query_params = [], $headers = []);
 
+    /**
+     * Multipart Post Request
+     *
+     * @param string $path
+     * @param array $multipart
+     * @param array $query_params
+     * @param array $headers
+     * @return mixed
+     */
     public function postFile($path, $multipart, $query_params = [], $headers = []);
 }
