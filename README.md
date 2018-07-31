@@ -81,6 +81,22 @@ $backlog->space->putNotification(string $content_body);
 $backlog->space->diskUsage();
 ```
 
+### 添付ファイルの送信
+
+```php
+$multipart = [
+    [
+        'name' => 'file',
+        'contents' => fopen('test.txt', 'r'),
+        'filename' => 'file name',
+        'headers' => [
+            'Content-Type' => 'application/octet-stream'
+        ]
+    ]
+];
+$backlog->space->postAttachment(array $multipart);
+```
+
 ### 以下未実装
 - GET /api/v2/space/image
 - GET /api/v2/space/attachment
@@ -98,6 +114,15 @@ $backlog->users->load();
 ```php
 $backlog->users->find(int $user_id);
 ```
+
+### ユーザーの追加
+
+```php
+$backlog->users->create(int $user_id, string $password, string $name, string $mail_address, int $role_type);
+```
+
+クエリパラメータは以下参照
+https://developer.nulab-inc.com/ja/docs/backlog/api/2/add-user/
 
 ### 認証ユーザー情報の取得
 
@@ -160,7 +185,6 @@ $backlog->users->recentlyViewedWikis([array $query_params = []]);
 https://developer.nulab-inc.com/ja/docs/backlog/api/2/get-list-of-recently-viewed-wikis/
 
 ### 以下未実装
-- POST /api/v2/users
 - PATCH /api/v2/users/:userId
 - DELETE /api/v2/users/:userId
 - GET /api/v2/users/:userId/icon
