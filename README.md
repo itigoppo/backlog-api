@@ -19,8 +19,11 @@ composer require itigoppo/backlog-api
 # Usage
 
 ```php
-$backlog = new Backlog(new ApiKeyConnector('Your Backlog Space ID', 'Your API KEY'));
+$backlog = new Backlog(new ApiKeyConnector('Your Backlog Space ID', 'Your API KEY'[, string $domain = 'jp']));
 ```
+
+$domain部分、お使いのスペースに合わせて変更してください。
+デフォルトは「jp」です。
 
 ## 状態一覧の取得
 
