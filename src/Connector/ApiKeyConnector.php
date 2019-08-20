@@ -115,4 +115,24 @@ class ApiKeyConnector extends Connector
 
         return json_decode($response->getBody()->getContents());
     }
+
+    public function getFile($path, $form_params = [], $query_params = [], $headers = [])
+    {
+        try {
+            $response = $this->client->request('GET', $path, [
+                'headers' => $headers,
+                'query' => ['apiKey' => $this->api_key] + $query_params,
+                'form_params' => $form_params,
+            ]);
+        } catch (\Exception $exception) {
+            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        }
+
+        if ($response->getStatusCode() != '200') {
+            throw new BacklogException('', $response->getStatusCode());
+        }
+
+        // Return the whole response object for further processing
+        return $response;
+    }
 }

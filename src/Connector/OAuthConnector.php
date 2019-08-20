@@ -29,4 +29,14 @@ class OAuthConnector extends Connector
     {
         // TODO: Implement delete() method.
     }
+
+    public function postFile($path, $multipart, $query_params = [], $headers = [])
+    {
+        // TODO: Implement postFile() method.
+    }
+
+    public function getFile($path, $form_params = [], $query_params = [], $headers = [])
+    {
+        // TODO: Implement getFile() method.
+    }
 }
