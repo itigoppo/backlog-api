@@ -74,4 +74,15 @@ interface ConnectorInterface
      * @return mixed
      */
     public function postFile($path, $multipart, $query_params = [], $headers = []);
+
+    /**
+     * Get Request for File
+     *
+     * @param string $path
+     * @param array $form_params
+     * @param array $query_params
+     * @param array $headers
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function getFile($path, $form_params = [], $query_params = [], $headers = []);
 }
