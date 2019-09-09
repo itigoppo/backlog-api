@@ -249,6 +249,19 @@ class Issues
     }
 
     /**
+     * Get Issue Attachment
+     * @api https://developer.nulab.com/docs/backlog/api/2/get-issue-attachment/
+     *
+     * @param string $issues_id_or_key
+     * @param string $attachment_id
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function attachment($issues_id_or_key, $attachment_id)
+    {
+        return $this->connector->getFile(sprintf('issues/%s/attachments/%s', $issues_id_or_key, $attachment_id));
+    }
+
+    /**
      * 課題共有ファイル一覧の取得
      *
      * @param string $issues_id_or_key
