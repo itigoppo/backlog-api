@@ -474,14 +474,18 @@ https://developer.nulab-inc.com/ja/docs/backlog/api/2/add-comment-notification/
 $backlog->issues->attachments(string $issues_id_or_key);
 ```
 
+### 課題添付ファイルのダウンロード
+
+```php
+$backlog->issues->attachment(string $issues_id_or_key, string $attachment_id);
+```
+
 ### 課題共有ファイル一覧の取得
 
 ```php
 $backlog->issues->sharedFiles(string $issues_id_or_key);
 ```
-
 ### 以下未実装
-- GET /api/v2/issues/:issueIdOrKey/attachments/:attachmentId
 - DELETE /api/v2/issues/:issueIdOrKey/attachments/:attachmentId
 - POST /api/v2/issues/:issueIdOrKey/sharedFiles
 - DELETE /api/v2/issues/:issueIdOrKey/sharedFiles/:id
