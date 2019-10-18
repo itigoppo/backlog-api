@@ -60,7 +60,8 @@ class Backlog
     /**
      * 状態一覧の取得
      *
-     * @return mixed|string
+     * @return array
+     * @deprecated プロジェクトごとになりました('19/10/18) @link $backlog->projects->statuses($project_id_or_key)
      */
     public function statuses()
     {

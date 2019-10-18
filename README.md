@@ -225,6 +225,12 @@ $backlog->projects->load([array $query_params = []]);
 クエリパラメータは以下参照
 https://developer.nulab-inc.com/ja/docs/backlog/api/2/get-project-list/
 
+### プロジェクトの状態一覧の取得
+
+```php
+$backlog->projects->statuses(string $project_id_or_key);
+```
+
 ### プロジェクト情報の取得
 
 ```php

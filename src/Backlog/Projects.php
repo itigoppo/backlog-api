@@ -14,6 +14,17 @@ class Projects
     }
 
     /**
+     * プロジェクト情報の取得
+     *
+     * @param string $project_id_or_key
+     * @return array
+     */
+    public function statuses($project_id_or_key)
+    {
+        return $this->connector->get(sprintf('projects/%s/statuses', $project_id_or_key));
+    }
+
+    /**
      * プロジェクト一覧の取得
      *
      * @param array $query_options
