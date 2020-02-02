@@ -2,6 +2,8 @@
 
 namespace Itigoppo\BacklogApi\Backlog;
 
+use Itigoppo\BacklogApi\Connector\ApiKeyConnector;
+use Itigoppo\BacklogApi\Connector\Configure\Configure;
 use Itigoppo\BacklogApi\Connector\Connector;
 use Itigoppo\BacklogApi\Exception\BacklogException;
 
@@ -52,9 +54,14 @@ class Backlog
     /** @var null|Watchings */
     protected $_watchings = null;
 
-    public function __construct($connector)
+    /**
+     * Backlog constructor.
+     * @param \Itigoppo\BacklogApi\Connector\Configure\Configure $config
+     * @throws BacklogException
+     */
+    public function __construct(Configure $config)
     {
-        $this->connector = $connector;
+        $this->connector = new ApiKeyConnector($config);
     }
 
     /**

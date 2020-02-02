@@ -3,6 +3,7 @@
 namespace Itigoppo\BacklogApi\Connector;
 
 use GuzzleHttp\Client;
+use Itigoppo\BacklogApi\Connector\Configure\Configure;
 use Itigoppo\BacklogApi\Exception\BacklogException;
 
 class ApiKeyConnector extends Connector
@@ -13,13 +14,22 @@ class ApiKeyConnector extends Connector
     /** @var string */
     protected $api_key;
 
-    public function __construct($space_id, $api_key, $domain = 'jp')
+    /**
+     * ApiKeyConnector constructor.
+     * @param Configure $config
+     * @throws BacklogException
+     */
+    public function __construct(Configure $config)
     {
         $this->client = new Client([
-            'base_uri' => sprintf(self::API_URL, $space_id, $domain)
+            'base_uri' => $config->getApiBaseURL(),
         ]);
 
-        $this->api_key = $api_key;
+        if (empty($config->api_key)) {
+            throw new BacklogException('api_key must not be null');
+        }
+
+        $this->api_key = $config->api_key;
     }
 
     public function get($path, $form_params = [], $query_params = [], $headers = [])
