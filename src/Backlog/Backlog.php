@@ -5,6 +5,7 @@ namespace Itigoppo\BacklogApi\Backlog;
 use Itigoppo\BacklogApi\Connector\ApiKeyConnector;
 use Itigoppo\BacklogApi\Connector\Configure\Configure;
 use Itigoppo\BacklogApi\Connector\Connector;
+use Itigoppo\BacklogApi\Connector\OAuthConnector;
 use Itigoppo\BacklogApi\Exception\BacklogException;
 
 /**
@@ -61,7 +62,14 @@ class Backlog
      */
     public function __construct(Configure $config)
     {
-        $this->connector = new ApiKeyConnector($config);
+        $connector = null;
+        if (!empty($config->api_key)) {
+            $connector = new ApiKeyConnector($config);
+        } else {
+            $connector = new OAuthConnector($config);
+        }
+
+        $this->connector = $connector;
     }
 
     /**
