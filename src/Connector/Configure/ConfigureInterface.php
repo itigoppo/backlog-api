@@ -5,23 +5,23 @@ namespace Itigoppo\BacklogApi\Connector\Configure;
 interface ConfigureInterface
 {
     /**
-     * api base url
+     * base api url
      *
      * @return string
      */
-    public function getApiBaseURL();
+    public function getBaseApiURL();
 
     /**
-     * OAuth authorization url
+     * base OAuth authorization url
      *
      * @return string
      */
-    public function getOAuthAuthorizationURL();
+    public function getBaseOAuthAuthorizationURL();
 
     /**
-     * OAuth access token url
+     * base OAuth access token url
      *
      * @return string
      */
-    public function getOAuthAccessTokenURL();
+    public function getBaseOAuthAccessTokenURL();
 }

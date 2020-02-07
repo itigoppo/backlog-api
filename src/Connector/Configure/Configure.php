@@ -42,60 +42,10 @@ abstract class Configure implements ConfigureInterface
     /**
      * Configure constructor.
      * @param array $options
-     * @throws BacklogException
      */
     public function __construct($options)
     {
-//        $get_authorization_code = false;
-//        if (isset($options['get_authorization_code'])) {
-//            $get_authorization_code = (bool)$options['get_authorization_code'];
-//        }
-//        $get_access_token = false;
-//        if (isset($options['get_access_token'])) {
-//            $get_access_token = (bool)$options['get_access_token'];
-//        }
-//        if ($get_authorization_code === true && $get_access_token === true) {
-//            throw new BacklogException('Do you get an authentication code or an access token?');
-//        }
-
-        if (empty($options['space_id'])) {
-            throw new BacklogException('space_id must not be null');
-        }
-
-        if (
-            empty($options['api_key'])
-            && empty($options['access_token'])
-            && empty($options['client_id'])
-            && empty($options['client_secret'])
-        ) {
-            throw new BacklogException('client_id and client_secret must not be null');
-        }
-
-//        if (
-//            empty($options['api_key'])
-//            && (
-//                empty($options['access_token'])
-//                && $get_authorization_code === false
-//                && $get_access_token === false
-//            )
-//        ) {
-//            throw new BacklogException('api_key or access_token must not be null');
-//        }
-//
-//        if ($get_authorization_code === true && empty($options['client_id']) && empty($options['client_secret'])) {
-//            throw new BacklogException('client_id and client_secret must not be null');
-//        }
-//
-//        if (
-//            $get_access_token === true
-//            && empty($options['client_id'])
-//            && empty($options['client_secret'])
-//            && empty($options['authorization_code'])
-//        ) {
-//            throw new BacklogException('client_id and client_secret and authorization_code must not be null');
-//        }
-
-        $this->space_id = $options['space_id'];
+        $this->space_id = isset($options['space_id']) ? $options['space_id'] : null;;
         $this->api_key = isset($options['api_key']) ? $options['api_key'] : null;
         $this->access_token = isset($options['access_token']) ? $options['access_token'] : null;
         $this->client_id = isset($options['client_id']) ? $options['client_id'] : null;

@@ -62,6 +62,10 @@ class Backlog
      */
     public function __construct(Configure $config)
     {
+        if (empty($config->space_id)) {
+            throw new BacklogException('space_id must not be null');
+        }
+
         $connector = null;
         if (!empty($config->api_key)) {
             $connector = new ApiKeyConnector($config);
@@ -70,6 +74,29 @@ class Backlog
         }
 
         $this->connector = $connector;
+    }
+
+    /**
+     * @return $this
+     * @throws BacklogException
+     */
+    public function newClient()
+    {
+        $this->connector->setClient();
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOAuthAuthorizationURL()
+    {
+        if ($this->connector instanceof OAuthConnector) {
+            return $this->connector->getOAuthAuthorizationURL();
+        }
+
+        return null;
     }
 
     /**

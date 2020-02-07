@@ -9,27 +9,35 @@ use Itigoppo\BacklogApi\Exception\BacklogException;
 class ApiKeyConnector extends Connector
 {
     /** @var Client */
-    protected $client;
+    private $client;
 
     /** @var string */
-    protected $api_key;
+    private $base_uri;
+
+    /** @var string */
+    private $api_key;
 
     /**
      * ApiKeyConnector constructor.
+     *
      * @param Configure $config
      * @throws BacklogException
      */
     public function __construct(Configure $config)
     {
-        $this->client = new Client([
-            'base_uri' => $config->getApiBaseURL(),
-        ]);
-
         if (empty($config->api_key)) {
             throw new BacklogException('api_key must not be null');
         }
 
+        $this->base_uri = $config->getBaseApiURL();
         $this->api_key = $config->api_key;
+    }
+
+    public function setClient()
+    {
+        $this->client = new Client([
+            'base_uri' => $this->base_uri,
+        ]);
     }
 
     public function get($path, $form_params = [], $query_params = [], $headers = [])
