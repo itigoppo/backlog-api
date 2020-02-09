@@ -45,7 +45,7 @@ abstract class Configure implements ConfigureInterface
      */
     public function __construct($options)
     {
-        $this->space_id = isset($options['space_id']) ? $options['space_id'] : null;;
+        $this->space_id = isset($options['space_id']) ? $options['space_id'] : null;
         $this->api_key = isset($options['api_key']) ? $options['api_key'] : null;
         $this->access_token = isset($options['access_token']) ? $options['access_token'] : null;
         $this->client_id = isset($options['client_id']) ? $options['client_id'] : null;
