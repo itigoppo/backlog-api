@@ -65,7 +65,11 @@ class OAuthConnector extends Connector
 
     public function setClient()
     {
-        $token = $this->getOAuthAccessToken();
+        if (empty($this->refresh_token)) {
+            $token = $this->getOAuthAccessToken();
+        } else {
+            $token = $this->getOAuthRefreshAccessToken();
+        }
 
         $this->access_token = $token->access_token;
         $this->refresh_token = $token->refresh_token;
@@ -106,32 +110,120 @@ class OAuthConnector extends Connector
 
     public function post($path, $form_params = [], $query_params = [], $headers = [])
     {
-        // TODO: Implement post() method.
+        try {
+            $response = $this->client->request(
+                'POST',
+                $path,
+                [
+                    'headers' => $this->client->getConfig('headers') + $headers,
+                    'query' => $query_params,
+                    'form_params' => $form_params,
+                ]
+            );
+        } catch (\Exception $exception) {
+            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        }
+
+        return json_decode($response->getBody()->getContents());
     }
 
     public function put($path, $form_params = [], $query_params = [], $headers = [])
     {
-        // TODO: Implement put() method.
+        try {
+            $response = $this->client->request(
+                'PUT',
+                $path,
+                [
+                    'headers' => $this->client->getConfig('headers') + $headers,
+                    'query' => $query_params,
+                    'form_params' => $form_params,
+                ]
+            );
+        } catch (\Exception $exception) {
+            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        }
+
+        return json_decode($response->getBody()->getContents());
     }
 
     public function patch($path, $form_params = [], $query_params = [], $headers = [])
     {
-        // TODO: Implement patch() method.
+        try {
+            $response = $this->client->request(
+                'PATCH',
+                $path,
+                [
+                    'headers' => $this->client->getConfig('headers') + $headers,
+                    'query' => $query_params,
+                    'form_params' => $form_params,
+                ]
+            );
+        } catch (\Exception $exception) {
+            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        }
+
+        return json_decode($response->getBody()->getContents());
     }
 
     public function delete($path, $form_params = [], $query_params = [], $headers = [])
     {
-        // TODO: Implement delete() method.
+        try {
+            $response = $this->client->request(
+                'DELETE',
+                $path,
+                [
+                    'headers' => $this->client->getConfig('headers') + $headers,
+                    'query' => $query_params,
+                    'form_params' => $form_params,
+                ]
+            );
+        } catch (\Exception $exception) {
+            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        }
+
+        return json_decode($response->getBody()->getContents());
     }
 
     public function postFile($path, $multipart, $query_params = [], $headers = [])
     {
-        // TODO: Implement postFile() method.
+        try {
+            $response = $this->client->request(
+                'POST',
+                $path,
+                [
+                    'headers' => $this->client->getConfig('headers') + $headers,
+                    'query' => $query_params,
+                    'multipart' => $multipart
+                ]
+            );
+        } catch (\Exception $exception) {
+            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        }
+
+        return json_decode($response->getBody()->getContents());
     }
 
     public function getFile($path, $form_params = [], $query_params = [], $headers = [])
     {
-        // TODO: Implement getFile() method.
+        try {
+            $response = $this->client->request(
+                'GET',
+                $path,
+                [
+                    'headers' => $this->client->getConfig('headers') + $headers,
+                    'query' => $query_params,
+                    'form_params' => $form_params,
+                ]
+            );
+        } catch (\Exception $exception) {
+            throw new BacklogException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
+        }
+
+        if ($response->getStatusCode() != '200') {
+            throw new BacklogException('', $response->getStatusCode());
+        }
+
+        return json_decode($response->getBody()->getContents());
     }
 
     /**
