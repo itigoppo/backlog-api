@@ -237,12 +237,12 @@ class Backlog
     /**
      * Access the watchings
      *
-     * @return Git|null
+     * @return Watchings|null
      */
     protected function getWatchings()
     {
         if (!$this->_watchings) {
-            $this->_watchings = new Git($this->connector);
+            $this->_watchings = new Watchings($this->connector);
         }
 
         return $this->_watchings;
