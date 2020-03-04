@@ -489,17 +489,18 @@ class Projects
      *
      * @param string $project_id_or_key
      * @param int $category_id
-     * @param array $form_options
+     * @param string $name
      * @return mixed|string
      */
-    public function updateCategory($project_id_or_key, $category_id, $form_options = [])
+    public function updateCategory($project_id_or_key, $category_id, $name)
     {
         $headers = [
             'Content-Type' => 'application/x-www-form-urlencoded'
         ];
 
         $form_params = [
-            ] + $form_options;
+            'name' => $name,
+        ];
 
         return $this->connector->patch(
             sprintf(
