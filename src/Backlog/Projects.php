@@ -679,31 +679,33 @@ class Projects
      * Add List Item for List Type Custom Field
      * @api https://developer.nulab.com/docs/backlog/api/2/add-list-item-for-list-type-custom-field/
      *
-     * @param $project_id_or_key
-     * @param $id
-     * @param array $form_options
+     * @param string $project_id_or_key
+     * @param int $custom_id
+     * @param string $name
      *
      * @return mixed|string
      */
-    public function createListItemForCustomField($project_id_or_key, $id, $form_options = [])
+    public function createListItemForCustomField($project_id_or_key, $custom_id, $name)
     {
         $headers = [
             'Content-Type' => 'application/x-www-form-urlencoded'
         ];
 
         $form_params = [
-            ] + $form_options;
+            'name' => $name,
+        ];
 
-        return $this->connector->post(sprintf('projects/%s/customFields/%d/items', $project_id_or_key, $id), $form_params, [], $headers);
+        return $this->connector->post(sprintf('projects/%s/customFields/%d/items', $project_id_or_key, $custom_id), $form_params, [], $headers);
     }
 
     /**
      * Update List Item for List Type Custom Field
      * @api https://developer.nulab.com/docs/backlog/api/2/update-list-item-for-list-type-custom-field/
      *
-     * @param $project_id_or_key
-     * @param $id
-     * @param $item_id
+     * @param string $project_id_or_key
+     * @param int $custom_id
+     * @param int $item_id
+     * @param string $name
      *
      * @return mixed|string
      */
