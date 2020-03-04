@@ -202,19 +202,20 @@ class Projects
      * Add Project Administrator
      * @api https://developer.nulab.com/docs/backlog/api/2/add-project-administrator/
      *
-     * @param $project_id_or_key
-     * @param array $form_options
+     * @param string $project_id_or_key
+     * @param int $user_id
      *
      * @return mixed|string
      */
-    public function createAdministrator($project_id_or_key, $form_options = [])
+    public function createAdministrator($project_id_or_key, $user_id)
     {
         $headers = [
             'Content-Type' => 'application/x-www-form-urlencoded'
         ];
 
         $form_params = [
-            ] + $form_options;
+            'userId' => $user_id,
+        ];
 
         return $this->connector->post(sprintf('projects/%s/administrators', $project_id_or_key), $form_params, [], $headers);
 
@@ -225,18 +226,19 @@ class Projects
      * @api https://developer.nulab.com/docs/backlog/api/2/delete-project-administrator/
      *
      * @param $project_id_or_key
-     * @param array $form_options
+     * @param int $user_id
      *
      * @return mixed|string
      */
-    public function deleteAdministrator($project_id_or_key, $form_options = [])
+    public function deleteAdministrator($project_id_or_key, $user_id)
     {
         $headers = [
             'Content-Type' => 'application/x-www-form-urlencoded'
         ];
 
         $form_params = [
-        ] + $form_options;
+            'userId' => $user_id,
+        ];
 
         return $this->connector->delete(sprintf('projects/%s/administrators', $project_id_or_key), $form_params, [], $headers);
     }
