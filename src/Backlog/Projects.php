@@ -360,9 +360,10 @@ class Projects
      * @param string $project_id_or_key
      * @param string $name
      * @param string $color
+     * @param array $form_options
      * @return mixed|string
      */
-    public function createIssueType($project_id_or_key, $name, $color)
+    public function createIssueType($project_id_or_key, $name, $color, $form_options = [])
     {
         $headers = [
             'Content-Type' => 'application/x-www-form-urlencoded'
@@ -371,7 +372,7 @@ class Projects
         $form_params = [
             'name' => $name,
             'color' => $color,
-        ];
+        ] + $form_options;
 
         return $this->connector->post(
             sprintf(
