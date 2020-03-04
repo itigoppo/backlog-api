@@ -709,13 +709,17 @@ class Projects
      *
      * @return mixed|string
      */
-    public function updateListItemForCustomField($project_id_or_key, $id, $item_id)
+    public function updateListItemForCustomField($project_id_or_key, $custom_id, $item_id, $name)
     {
         $headers = [
             'Content-Type' => 'application/x-www-form-urlencoded'
         ];
 
-        return $this->connector->patch(sprintf('projects/%s/customFields/%d/items/%d', $project_id_or_key, $id, $item_id), [], [], $headers);
+        $form_params = [
+            'name' => $name,
+        ];
+
+        return $this->connector->patch(sprintf('projects/%s/customFields/%d/items/%d', $project_id_or_key, $custom_id, $item_id), $form_params, [], $headers);
     }
 
     /**
