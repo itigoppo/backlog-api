@@ -132,11 +132,15 @@ class Projects
      * プロジェクトユーザー一覧の取得
      *
      * @param string $project_id_or_key
+     * @param array $query_options
      * @return mixed|string
      */
-    public function users($project_id_or_key)
+    public function users($project_id_or_key, $query_options = [])
     {
-        return $this->connector->get(sprintf('projects/%s/users', $project_id_or_key));
+        $query_params = [
+            ] + $query_options;
+
+        return $this->connector->get(sprintf('projects/%s/users', $project_id_or_key), [], $query_params);
     }
 
     /**
