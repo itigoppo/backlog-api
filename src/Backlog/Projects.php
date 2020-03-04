@@ -29,9 +29,10 @@ class Projects
 
     /**
      * Add Project
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/add-project/
      *
-     * @param $project_key
+     * @param string $project_key
      * @param string $text_formatting_rule
      * @param bool $chart_enabled
      * @param bool $subtasking_enabled
@@ -39,18 +40,23 @@ class Projects
      *
      * @return mixed|string
      */
-    public function create($project_key, $text_formatting_rule = 'markdown', $chart_enabled = false, $subtasking_enabled = false, $form_options = [])
-    {
+    public function create(
+        $project_key,
+        $text_formatting_rule = 'markdown',
+        $chart_enabled = false,
+        $subtasking_enabled = false,
+        $form_options = []
+    ) {
         $headers = [
             'Content-Type' => 'application/x-www-form-urlencoded'
         ];
 
         $form_params = [
-            'key' => $project_key,
-            'textFormattingRule' => $text_formatting_rule,
-            'chartEnabled' => $chart_enabled,
-            'subtaskingEnabled' => $subtasking_enabled
-        ] + $form_options;
+                'key' => $project_key,
+                'textFormattingRule' => $text_formatting_rule,
+                'chartEnabled' => $chart_enabled,
+                'subtaskingEnabled' => $subtasking_enabled
+            ] + $form_options;
 
         return $this->connector->post('projects', $form_params, [], $headers);
     }
@@ -68,9 +74,10 @@ class Projects
 
     /**
      * Update Project
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/update-project/
      *
-     * @param $project_id_or_key
+     * @param string $project_id_or_key
      * @param array $form_options
      *
      * @return mixed|string
@@ -89,9 +96,10 @@ class Projects
 
     /**
      * Delete Project
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/delete-project/
      *
-     * @param $project_id_or_key
+     * @param string $project_id_or_key
      *
      * @return mixed|string
      */
@@ -102,9 +110,10 @@ class Projects
 
     /**
      * Get Project Icon
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/get-project-icon/
      *
-     * @param $project_id_or_key
+     * @param string $project_id_or_key
      *
      * @return mixed|string
      */
@@ -145,6 +154,7 @@ class Projects
 
     /**
      * Add Project User
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/add-project-user/
      *
      * @param string $project_id_or_key
@@ -167,6 +177,7 @@ class Projects
 
     /**
      * Delete Project User
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/delete-project-user/
      *
      * @param string $project_id_or_key
@@ -200,6 +211,7 @@ class Projects
 
     /**
      * Add Project Administrator
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/add-project-administrator/
      *
      * @param string $project_id_or_key
@@ -217,15 +229,20 @@ class Projects
             'userId' => $user_id,
         ];
 
-        return $this->connector->post(sprintf('projects/%s/administrators', $project_id_or_key), $form_params, [], $headers);
-
+        return $this->connector->post(
+            sprintf('projects/%s/administrators', $project_id_or_key),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
      * Delete Project Administrator
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/delete-project-administrator/
      *
-     * @param $project_id_or_key
+     * @param string $project_id_or_key
      * @param int $user_id
      *
      * @return mixed|string
@@ -240,7 +257,12 @@ class Projects
             'userId' => $user_id,
         ];
 
-        return $this->connector->delete(sprintf('projects/%s/administrators', $project_id_or_key), $form_params, [], $headers);
+        return $this->connector->delete(
+            sprintf('projects/%s/administrators', $project_id_or_key),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
@@ -256,11 +278,12 @@ class Projects
 
     /**
      * Add Status
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/add-status/
      *
-     * @param $project_id_or_key
-     * @param $name
-     * @param $color
+     * @param string $project_id_or_key
+     * @param string $name
+     * @param string $color
      *
      * @return mixed|string
      */
@@ -280,10 +303,11 @@ class Projects
 
     /**
      * Update Status
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/update-status
      *
-     * @param $project_id_or_key
-     * @param $status_id
+     * @param string $project_id_or_key
+     * @param int $status_id
      * @param array $form_options
      *
      * @return mixed|string
@@ -297,16 +321,22 @@ class Projects
         $form_params = [
             ] + $form_options;
 
-        return $this->connector->patch(sprintf('projects/%s/statuses/%d', $project_id_or_key, $status_id), $form_params, [], $headers);
+        return $this->connector->patch(
+            sprintf('projects/%s/statuses/%d', $project_id_or_key, $status_id),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
      * Delete Status
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/delete-status/
      *
-     * @param $project_id_or_key
-     * @param $status_id
-     * @param $substitute_status_id
+     * @param string $project_id_or_key
+     * @param int $status_id
+     * @param int $substitute_status_id
      *
      * @return mixed|string
      */
@@ -320,14 +350,20 @@ class Projects
             'substituteStatusId' => $substitute_status_id
         ];
 
-        return $this->connector->delete(sprintf('projects/%s/statuses/%d', $project_id_or_key, $status_id), $form_params, [], $headers);
+        return $this->connector->delete(
+            sprintf('projects/%s/statuses/%d', $project_id_or_key, $status_id),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
      * Update Order of Status
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/update-order-of-status/
      *
-     * @param $project_id_or_key
+     * @param string $project_id_or_key
      * @param array $form_options
      *
      * @return mixed|string
@@ -341,8 +377,14 @@ class Projects
         $form_params = [
             ] + $form_options;
 
-        return $this->connector->patch(sprintf('projects/%s/statuses/updateDisplayOrder', $project_id_or_key), $form_params, [], $headers);
+        return $this->connector->patch(
+            sprintf('projects/%s/statuses/updateDisplayOrder', $project_id_or_key),
+            $form_params,
+            [],
+            $headers
+        );
     }
+
     /**
      * 種別一覧の取得
      *
@@ -370,9 +412,9 @@ class Projects
         ];
 
         $form_params = [
-            'name' => $name,
-            'color' => $color,
-        ] + $form_options;
+                'name' => $name,
+                'color' => $color,
+            ] + $form_options;
 
         return $this->connector->post(
             sprintf(
@@ -603,9 +645,10 @@ class Projects
 
     /**
      * Get Custom Field List
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/get-custom-field-list/
      *
-     * @param $project_id_or_key
+     * @param string $project_id_or_key
      *
      * @return mixed|string
      */
@@ -616,11 +659,12 @@ class Projects
 
     /**
      * Add Custom Field
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/add-custom-field/
      *
-     * @param $project_id_or_key
-     * @param $type_id
-     * @param $name
+     * @param string $project_id_or_key
+     * @param int $type_id
+     * @param string $name
      * @param array $form_options
      *
      * @return mixed|string
@@ -632,24 +676,30 @@ class Projects
         ];
 
         $form_params = [
-            'typeId' => $type_id,
-            'name' => $name
-        ] + $form_options;
+                'typeId' => $type_id,
+                'name' => $name
+            ] + $form_options;
 
-        return $this->connector->post(sprintf('projects/%s/customFields', $project_id_or_key), $form_params, [], $headers);
+        return $this->connector->post(
+            sprintf('projects/%s/customFields', $project_id_or_key),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
      * Update Custom Field
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/update-custom-field/
      *
-     * @param $project_id_or_key
-     * @param $id
+     * @param string $project_id_or_key
+     * @param int $custom_id
      * @param array $form_options
      *
      * @return mixed|string
      */
-    public function updateCustomField($project_id_or_key, $id, $form_options = [])
+    public function updateCustomField($project_id_or_key, $custom_id, $form_options = [])
     {
         $headers = [
             'Content-Type' => 'application/x-www-form-urlencoded'
@@ -658,25 +708,32 @@ class Projects
         $form_params = [
             ] + $form_options;
 
-        return $this->connector->post(sprintf('projects/%s/customFields/%d', $project_id_or_key, $id), $form_params, [], $headers);
+        return $this->connector->post(
+            sprintf('projects/%s/customFields/%d', $project_id_or_key, $custom_id),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
      * Delete Custom Field
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/delete-custom-field/
      *
      * @param $project_id_or_key
-     * @param $id
+     * @param $custom_id
      *
      * @return mixed|string
      */
-    public function deleteCustomField($project_id_or_key, $id)
+    public function deleteCustomField($project_id_or_key, $custom_id)
     {
-        return $this->connector->delete(sprintf('projects/%s/customFields/%d', $project_id_or_key, $id));
+        return $this->connector->delete(sprintf('projects/%s/customFields/%d', $project_id_or_key, $custom_id));
     }
 
     /**
      * Add List Item for List Type Custom Field
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/add-list-item-for-list-type-custom-field/
      *
      * @param string $project_id_or_key
@@ -695,11 +752,17 @@ class Projects
             'name' => $name,
         ];
 
-        return $this->connector->post(sprintf('projects/%s/customFields/%d/items', $project_id_or_key, $custom_id), $form_params, [], $headers);
+        return $this->connector->post(
+            sprintf('projects/%s/customFields/%d/items', $project_id_or_key, $custom_id),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
      * Update List Item for List Type Custom Field
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/update-list-item-for-list-type-custom-field/
      *
      * @param string $project_id_or_key
@@ -719,31 +782,40 @@ class Projects
             'name' => $name,
         ];
 
-        return $this->connector->patch(sprintf('projects/%s/customFields/%d/items/%d', $project_id_or_key, $custom_id, $item_id), $form_params, [], $headers);
+        return $this->connector->patch(
+            sprintf('projects/%s/customFields/%d/items/%d', $project_id_or_key, $custom_id, $item_id),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
      * Delete List Item for List Type Custom Field
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/delete-list-item-for-list-type-custom-field/
      *
-     * @param $project_id_or_key
-     * @param $id
-     * @param $item_id
+     * @param string $project_id_or_key
+     * @param int $custom_id
+     * @param int $item_id
      *
      * @return mixed|string
      */
-    public function deleteListItemForCustomField($project_id_or_key, $id, $item_id)
+    public function deleteListItemForCustomField($project_id_or_key, $custom_id, $item_id)
     {
-        return $this->connector->delete(sprintf('projects/%s/customFields/%d/items/%d', $project_id_or_key, $id, $item_id));
+        return $this->connector->delete(
+            sprintf('projects/%s/customFields/%d/items/%d', $project_id_or_key, $custom_id, $item_id)
+        );
     }
 
     /**
      * Get List of Shared Files
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/get-list-of-shared-files/
      *
-     * @param $project_id_or_key
-     * @param $path
-     * @param $query_options
+     * @param string $project_id_or_key
+     * @param string $path
+     * @param array $query_options
      *
      * @return mixed|string
      */
@@ -752,22 +824,26 @@ class Projects
         $query_params = [
             ] + $query_options;
 
-        return $this->connector->get(sprintf('projects/%s/files/metadata/%s', $project_id_or_key, $path), [], $query_params);
-
+        return $this->connector->get(
+            sprintf('projects/%s/files/metadata/%s', $project_id_or_key, $path),
+            [],
+            $query_params
+        );
     }
 
     /**
      * Get File
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/get-file/
      *
-     * @param $project_id_or_key
-     * @param $id
+     * @param string $project_id_or_key
+     * @param int $file_id
      *
      * @return mixed|string
      */
-    public function findFile($project_id_or_key, $id)
+    public function findFile($project_id_or_key, $file_id)
     {
-        return $this->connector->get(sprintf('projects/%s/files/%d', $project_id_or_key, $id));
+        return $this->connector->get(sprintf('projects/%s/files/%d', $project_id_or_key, $file_id));
     }
 
     /**
@@ -783,11 +859,12 @@ class Projects
 
     /**
      * Get List of Webhooks
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/get-list-of-webhooks/
      *
-     * @param $project_id_or_key
+     * @param string $project_id_or_key
      *
-     *  @return mixed|string
+     * @return mixed|string
      */
     public function webhooks($project_id_or_key)
     {
@@ -796,14 +873,15 @@ class Projects
 
     /**
      * Add Webhook
+     *
      * @apihttps://developer.nulab.com/docs/backlog/api/2/add-webhook/
      *
-     * @param $project_id_or_key
-     * @param $form_options
+     * @param string $project_id_or_key
+     * @param array $form_options
      *
      * @return mixed|string
      */
-    public function createWebhook($project_id_or_key, $form_options)
+    public function createWebhook($project_id_or_key, $form_options = [])
     {
         $headers = [
             'Content-Type' => 'application/x-www-form-urlencoded'
@@ -817,10 +895,11 @@ class Projects
 
     /**
      * Get Webhook
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/get-webhook/
      *
-     * @param $project_id_or_key
-     * @param $webhook_id
+     * @param string $project_id_or_key
+     * @param string $webhook_id
      *
      * @return mixed|string
      */
@@ -831,11 +910,11 @@ class Projects
 
     /**
      * Update Webhook
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/update-webhook/
      *
-     * @param $project_id_or_key
-     *
-     * @param $webhook_id
+     * @param string $project_id_or_key
+     * @param string $webhook_id
      * @param array $form_options
      *
      * @return mixed|string
@@ -849,15 +928,21 @@ class Projects
         $form_params = [
             ] + $form_options;
 
-        return $this->connector->patch(sprintf('projects/%s/webhooks/%s', $project_id_or_key, $webhook_id), $form_params, [], $headers);
+        return $this->connector->patch(
+            sprintf('projects/%s/webhooks/%s', $project_id_or_key, $webhook_id),
+            $form_params,
+            [],
+            $headers
+        );
     }
 
     /**
      * Delete Webhook
+     *
      * @api https://developer.nulab.com/docs/backlog/api/2/delete-webhook/
      *
-     * @param $project_id_or_key
-     * @param $webhook_id
+     * @param string $project_id_or_key
+     * @param string $webhook_id
      *
      * @return mixed|string
      */
