@@ -2,7 +2,10 @@
 
 namespace Itigoppo\BacklogApi\Backlog;
 
+use Itigoppo\BacklogApi\Connector\ApiKeyConnector;
+use Itigoppo\BacklogApi\Connector\Configure\Configure;
 use Itigoppo\BacklogApi\Connector\Connector;
+use Itigoppo\BacklogApi\Connector\OAuthConnector;
 use Itigoppo\BacklogApi\Exception\BacklogException;
 
 /**
@@ -52,9 +55,48 @@ class Backlog
     /** @var null|Watchings */
     protected $_watchings = null;
 
-    public function __construct($connector)
+    /**
+     * Backlog constructor.
+     * @param \Itigoppo\BacklogApi\Connector\Configure\Configure $config
+     * @throws BacklogException
+     */
+    public function __construct(Configure $config)
     {
+        if (empty($config->space_id)) {
+            throw new BacklogException('space_id must not be null');
+        }
+
+        $connector = null;
+        if (!empty($config->api_key)) {
+            $connector = new ApiKeyConnector($config);
+        } else {
+            $connector = new OAuthConnector($config);
+        }
+
         $this->connector = $connector;
+    }
+
+    /**
+     * @return $this
+     * @throws BacklogException
+     */
+    public function newClient()
+    {
+        $this->connector->setClient();
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOAuthAuthorizationURL()
+    {
+        if ($this->connector instanceof OAuthConnector) {
+            return $this->connector->getOAuthAuthorizationURL();
+        }
+
+        return null;
     }
 
     /**

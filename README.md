@@ -19,7 +19,20 @@ composer require itigoppo/backlog-api
 # Usage
 
 ```php
-$backlog = new Backlog(new ApiKeyConnector('Your Backlog Space ID', 'Your API KEY'[, string $domain = 'jp']));
+// api keyでのログイン
+// .jpドメイン
+$config = new BacklogJpConfigure([
+    'space_id' => 'Your Backlog Space ID',
+    'api_key' => 'Your API KEY',
+]);
+$backlog = (new Backlog($config))->newClient();
+
+// .comドメイン
+$config = new BacklogComConfigure([
+    'space_id' => 'Your Backlog Space ID',
+    'api_key' => 'Your API KEY',
+]);
+$backlog = (new Backlog($config))->newClient();
 ```
 
 $domain部分、お使いのスペースに合わせて変更してください。

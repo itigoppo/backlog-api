@@ -9,6 +9,12 @@ namespace Itigoppo\BacklogApi\Connector;
  */
 interface ConnectorInterface
 {
+
+    /**
+     * @return void
+     */
+    public function setClient();
+
     /**
      * Get Request
      *
