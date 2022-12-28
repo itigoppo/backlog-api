@@ -3,7 +3,7 @@
     "description": "Backlog API Library for PHP",
     "type": "library",
     "require": {
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3 || ~7"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.1",
